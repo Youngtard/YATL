@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">YATL</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="nav_todo_list">To-do list</string>
+    <string name="nav_statistics">Statistics</string>
+    <string name="app_menu_filter">Filter</string>
+    <string name="app_menu_clear">Clear completed</string>
+    <string name="app_menu_refresh">Refresh</string>
+</resources>

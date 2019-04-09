@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!--<item-->
+        <!--android:id="@+id/nav_bar"-->
+        <!--android:icon="@drawable/ic_menu_white_24dp"-->
+        <!--app:showAsAction="always|withText"-->
+        <!--android:title="nav_bar"-->
+        <!--android:orderInCategory="20"-->
+        <!--/>-->
+
+    <item
+        android:id="@+id/app_menu_fragment_tasks_filter"
+        android:icon="@drawable/ic_filter_list_white_24dp"
+        app:showAsAction="ifRoom"
+        android:title="@string/app_menu_filter"
+        />
+
+    <item
+        android:id="@+id/app_menu_fragment_tasks_clear"
+        app:showAsAction="never"
+        android:title="@string/app_menu_clear"
+        />
+
+    <item
+        android:id="@+id/app_menu_fragment_tasks_refresh"
+        app:showAsAction="never"
+        android:title="@string/app_menu_refresh"
+        />
+
+
+</menu>
