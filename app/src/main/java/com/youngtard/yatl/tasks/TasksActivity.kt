@@ -15,11 +15,11 @@ class TasksActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tasks)
 
-        val toolbar = tb_tasks
-        setSupportActionBar(toolbar)
-        val actionbar = supportActionBar
-        actionbar?.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp)
-        actionbar?.setDisplayHomeAsUpEnabled(true)
+//        val toolbar = tb_tasks
+        setSupportActionBar(tb_tasks)
+        val appbar = supportActionBar
+        appbar?.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp)
+        appbar?.setDisplayHomeAsUpEnabled(true)
 
     }
 

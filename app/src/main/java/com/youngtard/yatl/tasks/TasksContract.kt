@@ -6,11 +6,14 @@ interface TasksContract {
     interface View {
         fun showNavBar()
         fun showFilterPopUpMenu()
+        fun openAddTasksFragment()
+
     }
 
 //    User actions
     interface UserActionsListener {
         fun onNavBarClick()
         fun onFilterOptionClicked()
+        fun addTask()
     }
 }

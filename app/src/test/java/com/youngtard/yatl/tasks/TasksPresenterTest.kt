@@ -24,6 +24,7 @@ class TasksPresenterTest {
     val rule: MockitoRule = MockitoJUnit.rule()
 
 
+//    An interface is mocked. It's not worth spying "a" real behavior?
 //    @Mock
 //    lateinit var tasksView: TasksContract.View
 
@@ -58,6 +59,14 @@ class TasksPresenterTest {
         tasksPresenter.onFilterOptionClicked()
 
         verify(tasksView).showFilterPopUpMenu()
+    }
+
+    @Test
+    fun clickOnAddTaskFabIcon_opensAddTasksFragment() {
+
+        tasksPresenter.addTask()
+
+        verify(tasksView).openAddTasksFragment()
     }
 
     /**

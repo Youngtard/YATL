@@ -10,4 +10,8 @@ class TasksPresenter(val tasksView: TasksContract.View): TasksContract.UserActio
         tasksView.showFilterPopUpMenu()
     }
 
+    override fun addTask() {
+        tasksView.openAddTasksFragment()
+    }
+
 }

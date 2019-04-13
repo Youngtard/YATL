@@ -8,4 +8,6 @@
     <string name="app_menu_filter">Filter</string>
     <string name="app_menu_clear">Clear completed</string>
     <string name="app_menu_refresh">Refresh</string>
+    <string name="et_add_task_title">Title</string>
+    <string name="et_add_task_body">Body</string>
 </resources>

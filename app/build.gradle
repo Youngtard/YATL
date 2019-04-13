@@ -37,7 +37,8 @@ dependencies {
 
     implementation 'com.android.support:support-v4:27.1.1'
     testImplementation 'junit:junit:4.12'
-    testImplementation "org.mockito:mockito-inline:+" //so that we can mock kotlin classes which are final by default
+    testImplementation "org.mockito:mockito-inline:+"
+    //so that we can mock kotlin classes which are final by default
     testImplementation 'com.android.support.test:rules:1.0.2' //needed?
 
     androidTestImplementation "org.mockito:mockito-android:+"
