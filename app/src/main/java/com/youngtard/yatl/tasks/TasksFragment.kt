@@ -3,10 +3,11 @@ package com.youngtard.yatl.tasks
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.v4.app.Fragment
+//import android.support.v4.app.Fragment
 import android.view.*
 import android.widget.PopupMenu
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 
 import com.youngtard.yatl.R
 import com.youngtard.yatl.addedittask.AddTaskActivity
@@ -23,17 +24,21 @@ private const val ARG_PARAM2 = "param2"
  */
 class TasksFragment : Fragment(), TasksContract.View {
 
+    lateinit var userActions: TasksContract.UserActionsListener
 
 //    Swipe to delete task
-//    Design landscape
+//    TODO Design landscape - Towards end of completing app, settings - night mode etc
 //    See how options menu would be altered or not by activty or fragment
 //    Snackbar
+//    Add more features
+//    Content provider, shared preferences
+//    Add user authentication, cloud/remote storage to implement network calls or Github Profiles - do mvvm first?
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setHasOptionsMenu(true)
         super.onCreate(savedInstanceState)
 
-
+        userActions = TasksPresenter(this)
 
     }
 
@@ -56,7 +61,8 @@ class TasksFragment : Fragment(), TasksContract.View {
         super.onStart()
 
         fab_add_task.setOnClickListener {
-            openAddTasksFragment()
+//todo            presenter.addTask
+            userActions.addTask()
         }
 
     }
@@ -70,13 +76,14 @@ class TasksFragment : Fragment(), TasksContract.View {
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
 
         when (item?.itemId) {
-            R.id.app_menu_fragment_tasks_filter -> showFilterPopUpMenu()
+            R.id.app_menu_fragment_tasks_filter -> userActions.onFilterOptionClicked()
         }
 
 
         return super.onOptionsItemSelected(item)
     }
 
+    //TODO Already implemented in relevant? activity class using android framework. Actual view is fragment not activity
     override fun showNavBar() {
 
     }

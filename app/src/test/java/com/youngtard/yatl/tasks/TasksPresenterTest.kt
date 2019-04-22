@@ -43,7 +43,7 @@ class TasksPresenterTest {
 
 //    make an espresso/integrated test? because the android activity shows the drawer not the fragment or mock the activity?
     @Test
-    fun clickOnNavBar_opensNavDrawer() {
+    fun `click on nav bar opens nav drawer`() {
 
         // when
         tasksPresenter.onNavBarClick()
@@ -55,14 +55,14 @@ class TasksPresenterTest {
     }
 
     @Test
-    fun clickOnFilterIcon_bringsUpPopUpMenu() {
+    fun `click on filter icon brings up filter pop up menu`() {
         tasksPresenter.onFilterOptionClicked()
 
         verify(tasksView).showFilterPopUpMenu()
     }
 
     @Test
-    fun clickOnAddTaskFabIcon_opensAddTasksFragment() {
+    fun `click on add task fab icon opens add tasks fragment`() {
 
         tasksPresenter.addTask()
 

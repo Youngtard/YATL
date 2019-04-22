@@ -1,6 +1,6 @@
 package com.youngtard.yatl.tasks
 
-class TasksPresenter(val tasksView: TasksContract.View): TasksContract.UserActionsListener {
+class TasksPresenter(private val tasksView: TasksContract.View): TasksContract.UserActionsListener {
 
     override fun onNavBarClick() {
         tasksView.showNavBar()

@@ -18,9 +18,23 @@
         />
 
     <item
-        android:id="@+id/app_menu_fragment_tasks_clear"
+        android:id="@+id/app_menu_fragment_tasks_search"
+        android:icon="@drawable/ic_search_white_24dp"
+        app:showAsAction="ifRoom|collapseActionView"
+        android:title="@string/app_menu_search"
+        app:actionViewClass="android.support.v7.widget.SearchView"
+        />
+
+    <item
+        android:id="@+id/app_menu_fragment_tasks_clear_completed"
         app:showAsAction="never"
-        android:title="@string/app_menu_clear"
+        android:title="@string/app_menu_clear_completed"
+        />
+
+    <item
+        android:id="@+id/app_menu_fragment_tasks_clear_all"
+        app:showAsAction="never"
+        android:title="@string/app_menu_clear_all"
         />
 
     <item
