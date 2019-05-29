@@ -6,11 +6,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 
 import com.youngtard.yatl.R
+import com.youngtard.yatl.Utils.AppExecutors
+import com.youngtard.yatl.data.Task
 import com.youngtard.yatl.data.source.TasksRepository
 import com.youngtard.yatl.data.source.local.TasksLocalDataSource
+import com.youngtard.yatl.data.source.local.TodoDatabase
 import kotlinx.android.synthetic.main.fragment_add_task.*
 
 // TODO: Rename parameter arguments, choose names that match
@@ -28,9 +32,15 @@ class AddTaskFragment : Fragment(), AddTaskContract.View {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+//        TODO or context!!
+        userActions = AddTaskPresenter(this, TasksRepository.getInstance(TasksLocalDataSource.getInstance(AppExecutors(), TodoDatabase.getInstance(context!!.applicationContext).tasksDao())))
 
-        userActions = AddTaskPresenter(this, TasksRepository.getInstance(TasksLocalDataSource.getInstance()))
+
     }
+
+//    override fun onActivityCreated(savedInstanceState: Bundle?) {
+//        super.onActivityCreated(savedInstanceState)
+//            }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -44,12 +54,19 @@ class AddTaskFragment : Fragment(), AddTaskContract.View {
         super.onStart()
 
         fab_save_task.setOnClickListener {
-            userActions.saveTask()
+            saveTask()
         }
     }
 
 
     override fun showTaskSaved() {
+        Toast.makeText(context?.applicationContext, "Task saved!", Toast.LENGTH_SHORT).show()
+    }
 
+    private fun saveTask() {
+        val taskTitle = et_task_title.text.toString()
+        val taskBody = et_task_body.text.toString()
+        val task = Task(taskTitle, taskBody)
+        userActions.saveTask(task)
     }
 }

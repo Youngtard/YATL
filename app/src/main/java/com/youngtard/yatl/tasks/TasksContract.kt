@@ -7,6 +7,7 @@ interface TasksContract {
         fun showNavBar()
         fun showFilterPopUpMenu()
         fun openAddTasksFragment()
+        fun loadTasks()
 
     }
 

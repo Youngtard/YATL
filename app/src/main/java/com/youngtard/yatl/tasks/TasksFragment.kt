@@ -8,9 +8,17 @@ import android.view.*
 import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 import com.youngtard.yatl.R
+import com.youngtard.yatl.Utils.AppExecutors
 import com.youngtard.yatl.addedittask.AddTaskActivity
+import com.youngtard.yatl.data.Task
+import com.youngtard.yatl.data.source.TasksRepository
+import com.youngtard.yatl.data.source.local.TasksLocalDataSource
+import com.youngtard.yatl.data.source.local.TodoDatabase
+import com.youngtard.yatl.tasks.adapter.TasksAdapter
 import kotlinx.android.synthetic.main.fragment_tasks.*
 
 // TODO: Rename parameter arguments, choose names that match
@@ -24,7 +32,15 @@ private const val ARG_PARAM2 = "param2"
  */
 class TasksFragment : Fragment(), TasksContract.View {
 
-    lateinit var userActions: TasksContract.UserActionsListener
+    private lateinit var userActions: TasksContract.UserActionsListener
+
+    private lateinit var tasksRepository: TasksRepository
+    private lateinit var tasksLayoutManager: RecyclerView.LayoutManager
+    lateinit var tasksAdapter: TasksAdapter
+
+
+//    For hard testing purposes, local database already does it
+    lateinit var appExecutors: AppExecutors
 
 //    Swipe to delete task
 //    TODO Design landscape - Towards end of completing app, settings - night mode etc
@@ -39,6 +55,30 @@ class TasksFragment : Fragment(), TasksContract.View {
         super.onCreate(savedInstanceState)
 
         userActions = TasksPresenter(this)
+
+
+//        TODO context!!??
+//        TODo never used?
+        tasksRepository = TasksRepository.getInstance(TasksLocalDataSource.getInstance(AppExecutors(), TodoDatabase.getInstance(context!!.applicationContext).tasksDao()))
+        tasksLayoutManager = LinearLayoutManager(context)
+        tasksAdapter = TasksAdapter(ArrayList(0))
+
+
+        appExecutors = AppExecutors()
+
+
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        rv_tasks.apply {
+            setHasFixedSize(true)
+
+            layoutManager = tasksLayoutManager
+
+            adapter = tasksAdapter
+        }
 
     }
 
@@ -63,6 +103,17 @@ class TasksFragment : Fragment(), TasksContract.View {
         fab_add_task.setOnClickListener {
 //todo            presenter.addTask
             userActions.addTask()
+        }
+
+
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+//        TODO How does this shit workk with the code block and all. check definition
+        appExecutors.diskIO.execute{        tasksAdapter.tasksData = TodoDatabase.getInstance(context!!.applicationContext).tasksDao().getAllTasks()
         }
 
     }
@@ -104,6 +155,10 @@ class TasksFragment : Fragment(), TasksContract.View {
     override fun openAddTasksFragment() {
         val intent = Intent(context, AddTaskActivity::class.java)
         startActivity(intent)
+
+    }
+
+    override fun loadTasks() {
 
     }
 

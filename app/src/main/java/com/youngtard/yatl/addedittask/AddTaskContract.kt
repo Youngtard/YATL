@@ -1,5 +1,7 @@
 package com.youngtard.yatl.addedittask
 
+import com.youngtard.yatl.data.Task
+
 interface AddTaskContract {
 
     interface View {
@@ -8,6 +10,6 @@ interface AddTaskContract {
     }
 
     interface UserActionsListener {
-        fun saveTask()
+        fun saveTask(task: Task)
     }
 }
